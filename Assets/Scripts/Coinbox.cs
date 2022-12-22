@@ -22,6 +22,7 @@ public class Coinbox : MonoBehaviour
         if(remainingCoins > 0 &&
             collision.collider.GetComponent<PlayerMovementController>() != null)
         {
+            Debug.Log(collision.contacts[0].normal);
             GameManager.Instance.AddCoin();
             remainingCoins--;
             if(remainingCoins <= 0)
