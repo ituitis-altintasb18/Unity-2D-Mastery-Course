@@ -11,11 +11,14 @@ public class Coinbox : MonoBehaviour
     [SerializeField]
     private int totalCoins = 1;
 
-    private int remainingCoins;
+    private Animator animator;
+    private int remainingCoins;  
+
     // Start is called before the first frame update
     void Awake()
     {
-        remainingCoins = totalCoins;
+        animator = GetComponent<Animator>();
+        remainingCoins = totalCoins;       
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -26,6 +29,8 @@ public class Coinbox : MonoBehaviour
 
             GameManager.Instance.AddCoin();
             remainingCoins--;
+            animator.SetTrigger("FlipCoin");
+
             if (remainingCoins <= 0)
             {
                 enabledSprite.enabled = false;
