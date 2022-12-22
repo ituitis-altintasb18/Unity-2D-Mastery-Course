@@ -62,7 +62,6 @@ public class GameManager : MonoBehaviour
         coins++;
         if (OnCoinsChanged != null)
             OnCoinsChanged(coins);
-
     }
 
     private void RestartGame()
