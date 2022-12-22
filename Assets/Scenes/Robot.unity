@@ -1052,7 +1052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledSprite: {fileID: 1635768582}
   disabledSprite: {fileID: 600880616}
-  totalCoins: 10
+  totalCoins: 3
 --- !u!61 &570280715
 BoxCollider2D:
   m_ObjectHideFlags: 0
