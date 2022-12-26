@@ -10,6 +10,8 @@ public class Sawblade : MonoBehaviour
     private Transform end;
     [SerializeField]
     private Transform sawBladeSprite;
+    [SerializeField]
+    private float speed;
 
     private float positionPercent;
     private int direction = 1;
@@ -17,7 +19,10 @@ public class Sawblade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        positionPercent += Time.deltaTime * direction;
+        float distance = Vector3.Distance(start.position, end.position);
+        float speedForDistance = speed / distance;
+
+        positionPercent += Time.deltaTime * direction * speedForDistance;
 
         //Vector2 also works fine why did we use vector3 in a 2d tutorial???
         sawBladeSprite.position = Vector3.Lerp(start.position, end.position, positionPercent);

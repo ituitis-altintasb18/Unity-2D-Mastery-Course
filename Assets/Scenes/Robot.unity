@@ -3710,6 +3710,7 @@ MonoBehaviour:
   start: {fileID: 530092129}
   end: {fileID: 1686061264}
   sawBladeSprite: {fileID: 1263643057}
+  speed: 3
 --- !u!61 &8139617005920759538
 BoxCollider2D:
   m_ObjectHideFlags: 0
