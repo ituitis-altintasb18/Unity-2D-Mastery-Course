@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sawblade : MonoBehaviour
+public class Mover : MonoBehaviour
 {
     [SerializeField]
     private Transform start;
     [SerializeField]
     private Transform end;
     [SerializeField]
-    private Transform sawBladeSprite;
+    private Transform sprite;
     [SerializeField]
     private float speed;
 
@@ -25,7 +25,7 @@ public class Sawblade : MonoBehaviour
         positionPercent += Time.deltaTime * direction * speedForDistance;
 
         //Vector2 also works fine why did we use vector3 in a 2d tutorial???
-        sawBladeSprite.position = Vector3.Lerp(start.position, end.position, positionPercent);
+        sprite.position = Vector3.Lerp(start.position, end.position, positionPercent);
         if (positionPercent >= 1 && direction == 1)
         {
             direction = -1;
