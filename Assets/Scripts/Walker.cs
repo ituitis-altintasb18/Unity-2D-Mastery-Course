@@ -7,12 +7,15 @@ public class Walker : MonoBehaviour
 {
     [SerializeField]
     private float speed = 1f;
+    [SerializeField]
+    private GameObject spawnOnStompPrefab;
 
     private new Collider2D collider;
     private new Rigidbody2D rigidbody2D;
     private SpriteRenderer sprite;
 
     private Vector2 direction = Vector2.left;
+
     private void Awake()
     {
         collider = GetComponent<Collider2D>();
@@ -35,13 +38,23 @@ public class Walker : MonoBehaviour
     {
         if (collision.WasHitFromUpperSide() && collision.WasHitByPlayer())
         {
-            Destroy(gameObject);
+            if(spawnOnStompPrefab != null)
+            {
+                Instantiate(spawnOnStompPrefab, transform.position, transform.rotation);
+            }
+            HandleWalkerStomped();
         }
         else if (collision.WasHitByPlayer())
         {
             GameManager.Instance.KillPlayer();
         }
     }
+
+    private void HandleWalkerStomped()
+    {
+        Destroy(gameObject);
+    }
+
     private bool HitNotPlayer()
     {
         float x = GetForwardX();
