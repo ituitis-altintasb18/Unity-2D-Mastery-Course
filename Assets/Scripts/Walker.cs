@@ -42,7 +42,7 @@ public class Walker : MonoBehaviour
             {
                 Instantiate(spawnOnStompPrefab, transform.position, transform.rotation);
             }
-            HandleWalkerStomped();
+            HandleWalkerStomped(collision.collider.GetComponent<PlayerMovementController>());
         }
         else if (collision.WasHitByPlayer())
         {
@@ -50,8 +50,9 @@ public class Walker : MonoBehaviour
         }
     }
 
-    private void HandleWalkerStomped()
+    private void HandleWalkerStomped(PlayerMovementController playerMovementController)
     {
+        playerMovementController.Bounce();
         Destroy(gameObject);
     }
 

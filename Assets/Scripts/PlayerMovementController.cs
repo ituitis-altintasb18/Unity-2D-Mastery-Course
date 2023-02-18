@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 [RequireComponent(typeof(CharacterGrounding))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -8,6 +9,8 @@ public class PlayerMovementController : MonoBehaviour, IMove
     private float moveSpeed = 10;
     [SerializeField]
     private float jumpForce = 400;
+    [SerializeField]
+    private float bounceForce = 300;
 
     private new Rigidbody2D rigidbody2D;
     private CharacterGrounding characterGrounding;
@@ -38,5 +41,10 @@ public class PlayerMovementController : MonoBehaviour, IMove
 
         
 
+    }
+
+    internal void Bounce()
+    {
+        rigidbody2D.AddForce(Vector2.up * bounceForce);
     }
 }

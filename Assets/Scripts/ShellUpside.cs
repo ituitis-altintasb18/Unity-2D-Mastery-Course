@@ -26,20 +26,38 @@ public class ShellUpside : MonoBehaviour
     {
         if (collision.WasHitByPlayer())
         {
-            if (direction.magnitude == 0)
+            HandlePlayerCollision(collision);
+        }
+        else if(collision.WasHitFromSide())
+        {
+            LaunchShell(collision);
+            var breakable = collision.collider.GetComponent<BreakableBox>();
+            if(breakable != null)
             {
-                LaunchShell(collision);
+                Destroy(breakable.gameObject);
+            }
+        }
+    }
+
+    private void HandlePlayerCollision(Collision2D collision)
+    {
+        var playerMovementController = collision.collider.GetComponent<PlayerMovementController>();
+        if (direction.magnitude == 0)
+        {
+            LaunchShell(collision);
+            if (collision.WasHitFromUpperSide())
+                playerMovementController.Bounce();
+        }
+        else
+        {
+            if (collision.WasHitFromUpperSide())
+            {
+                direction = Vector2.zero;
+                playerMovementController.Bounce();
             }
             else
             {
-                if (collision.WasHitFromUpperSide())
-                {
-                    direction = Vector2.zero;
-                }
-                else
-                {
-                    GameManager.Instance.KillPlayer();
-                }
+                GameManager.Instance.KillPlayer();
             }
         }
     }
