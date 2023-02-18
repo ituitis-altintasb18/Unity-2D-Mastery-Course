@@ -31,10 +31,10 @@ public class ShellUpside : MonoBehaviour
         else if(collision.WasHitFromSide())
         {
             LaunchShell(collision);
-            var breakable = collision.collider.GetComponent<BreakableBox>();
-            if(breakable != null)
+            var damageable = collision.collider.GetComponent<ITakeShellHits>();
+            if(damageable != null)
             {
-                Destroy(breakable.gameObject);
+                damageable.HandleShellHit(this);
             }
         }
     }

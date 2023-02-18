@@ -55,6 +55,10 @@ public class CharacterGrounding : MonoBehaviour
         Debug.DrawRay(foot.position, Vector3.down * maxDistance, Color.red);
         if (raycastHit.collider != null)
         {
+            if (groundedObject != raycastHit.collider.transform)
+            {
+                groundedObjectLastPosition = raycastHit.collider.transform.position;
+            }
             groundedObject = raycastHit.collider.transform; //groundedObject is set here first
             IsGrounded = true;
         }
