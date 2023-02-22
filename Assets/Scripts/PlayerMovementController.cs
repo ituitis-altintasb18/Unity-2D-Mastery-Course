@@ -10,6 +10,8 @@ public class PlayerMovementController : MonoBehaviour, IMove
     [SerializeField]
     private float jumpForce = 400;
     [SerializeField]
+    private float wallJumpForce = 300;
+    [SerializeField]
     private float bounceForce = 300;
 
     private new Rigidbody2D rigidbody2D;
@@ -27,6 +29,11 @@ public class PlayerMovementController : MonoBehaviour, IMove
         if (Input.GetKeyDown("space") && characterGrounding.IsGrounded)
         {
             rigidbody2D.AddForce(Vector2.up * jumpForce);
+
+            if(characterGrounding.GroundedDirection != Vector2.down)
+            {
+                rigidbody2D.AddForce(characterGrounding.GroundedDirection * -1f * wallJumpForce);
+            }
         }
     }
 
